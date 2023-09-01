@@ -1,0 +1,77 @@
+create database db_livros;
+use db_livros;
+
+insert into tb_login(id_user, usuario, senha)
+values (3, 'admin', 'admin');
+
+describe tb_login;
+select * from tb_login;
+
+create table tb_funcionarios(
+id_funcionario int primary key auto_increment,
+nome varchar (50) not null unique,
+nascimento date not null,
+telefone int (15) not null,
+email varchar (50)not null
+)default charset=utf8;
+
+alter table tb_funcionarios
+add column senha varchar (30) not null;
+
+describe tb_funcionarios;
+select * from tb_funcionarios;
+
+create table tb_emprestimo(
+id_emprestimo int primary key auto_increment,
+data_emprestimo date not null,
+id_funcionario int not null,
+foreign key (id_funcionario) references
+tb_funcionarios (id_funcionario) ,
+id_livro int not null,
+foreign key (id_livro) references
+tb_livros (id_livro) 
+)default charset=utf8;
+
+describe tb_emprestimo;
+
+create table tb_livros(
+id_livro int primary key auto_increment,
+titulo_livro varchar (30) not null,
+data_publicacao date,
+qtd int (4),
+id_autor int not null,
+foreign key (id_autor) references
+tb_autor (id_autor) ,
+id_genero int not null,
+foreign key (id_genero) references
+tb_livros (id_genero) 
+)default charset=utf8;
+
+describe tb_livros;
+select * from tb_livros;
+
+create table tb_autor(
+id_autor int primary key auto_increment,
+nome_autor varchar (50) not null 
+)default charset=utf8;
+
+create table tb_genero(
+id_genero int primary key auto_increment,
+nome_genero varchar (50) not null 
+);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
